@@ -1,10 +1,11 @@
 import React from "react";
 import "./App.css";
+import FoodMenu from "./pages/FoodMenu/FoodMenu";
 
 function App() {
   return (
     <div className="App">
-      <h1>Welcome to full stack course</h1>
+      <FoodMenu />
     </div>
   );
 }
