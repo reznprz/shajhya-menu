@@ -1,5 +1,18 @@
 import ApiResponse from "../api/ApiResponse";
 
+export enum ApiErrorType {
+  GENERAL = "GENERAL",
+  NETWORK = "NETWORK",
+  NOT_FOUND = "NOT_FOUND",
+  BAD_REQUEST = "BAD_REQUEST",
+  INTERNAL_SERVER_ERROR = "INTERNAL_SERVER_ERROR",
+  UNAUTHORIZED = "UNAUTHORIZED",
+  FORBIDDEN = "FORBIDDEN",
+  BAD_GATEWAY = "BAD_GATEWAY",
+  SERVICE_UNAVAILABLE = "SERVICE_UNAVAILABLE",
+  GATEWAY_TIMEOUT = "GATEWAY_TIMEOUT",
+}
+
 export class ApiResult<T> {
   private constructor(
     public readonly isSuccess: boolean,
@@ -81,17 +94,4 @@ export class ApiResult<T> {
 
     return ApiResult.error(errorMessage, errorType, defaultValue);
   }
-}
-
-export enum ApiErrorType {
-  GENERAL = "GENERAL",
-  NETWORK = "NETWORK",
-  NOT_FOUND = "NOT_FOUND",
-  BAD_REQUEST = "BAD_REQUEST",
-  INTERNAL_SERVER_ERROR = "INTERNAL_SERVER_ERROR",
-  UNAUTHORIZED = "UNAUTHORIZED",
-  FORBIDDEN = "FORBIDDEN",
-  BAD_GATEWAY = "BAD_GATEWAY",
-  SERVICE_UNAVAILABLE = "SERVICE_UNAVAILABLE",
-  GATEWAY_TIMEOUT = "GATEWAY_TIMEOUT",
 }

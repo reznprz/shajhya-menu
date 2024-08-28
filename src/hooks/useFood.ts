@@ -1,6 +1,6 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { foodService } from "../service/FoodService";
-import { createStateManager, State } from "../util/StateManager";
+import { useApiState } from "../util/State";
 import { Food } from "../model/Api";
 
 enum SubCategory {
@@ -13,32 +13,35 @@ enum SubCategory {
 }
 
 export function useFood() {
-  const [stateManager] = useState<State>(() => createStateManager());
+  const foodState = useApiState();
   const [groupedFoods, setGroupedFoods] = useState<Record<SubCategory, Food[]>>(
     {} as Record<SubCategory, Food[]>
   );
 
-  const fetchFood = useCallback(async () => {
-    stateManager.setLoading();
+  // Helper function to fetch food and set state
+  const fetchAndSetFood = async () => {
+    foodState.loading();
 
     const result = await foodService.getFoods();
 
     if (result.isSuccess) {
       const fetchedFoods = result.data?.payload || [];
       setGroupedFoods(groupFoodBySubCategory(fetchedFoods));
-      stateManager.setSuccess();
+      foodState.success();
     } else {
-      stateManager.setFailure(result.error || "Failed to fetch foods");
+      const errorMessage = `${result.error || "Failed to fetch foods"}${
+        result.errorType ? ` | ${result.errorType}` : ""
+      }`;
+      foodState.failure(errorMessage);
     }
-  }, [stateManager]);
+  };
 
-  // Optionally, you could use useEffect to fetch food when the component mounts
   useEffect(() => {
-    fetchFood();
-  }, [fetchFood]);
+    fetchAndSetFood();
+  }, []);
 
   return {
-    stateManager,
+    foodState,
     groupedFoods,
   };
 }
