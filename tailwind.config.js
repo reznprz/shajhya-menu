@@ -6,7 +6,16 @@ module.exports = {
       center: true,
       padding: "2rem",
     },
-    extend: {},
+    extend: {
+      colors: {
+        backgroundColor: "#fef6eb",
+        primaryFontColor: "#bb6561",
+        secondaryBackgroundColor: "#2a4759",
+      },
+      fontFamily: {
+        roboto: ["Roboto", "sans-serif"],
+      },
+    },
   },
   plugins: [],
 };
