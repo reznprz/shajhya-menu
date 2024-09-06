@@ -11,10 +11,10 @@ const SubCategoryContainer: React.FC<SubCategoryContainerProps> = ({
   items,
 }) => {
   return (
-    <div className="sub-category-container card my-3">
-      <div className="card-header">
-        <h3>{title}</h3>
-      </div>
+    <div className="bg-secondaryBackgroundColor mb-4 p-4">
+      <button>
+        <h3 className="text-white font-medium">{title}</h3>
+      </button>
     </div>
   );
 };
