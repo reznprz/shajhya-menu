@@ -1,11 +1,12 @@
 import React from "react";
 import "./App.css";
-import FoodMenu from "./pages/FoodMenu/FoodMenu";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./constants/router/router";
 
 function App() {
   return (
     <div className="App">
-      <FoodMenu />
+      <RouterProvider router={router} />
     </div>
   );
 }

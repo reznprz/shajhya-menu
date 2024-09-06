@@ -2,7 +2,6 @@ import React from "react";
 import SubCategoryContainer from "../../components/FoodMenu/SubCategoryContainer";
 import { useFood } from "../../hooks/useFood";
 import { StateType } from "../../util/State";
-// import { Alert, Spinner } from "react-bootstrap";
 
 const FoodMenu: React.FC = () => {
   const { groupedFoods, foodState } = useFood();
