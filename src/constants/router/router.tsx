@@ -1,16 +1,4 @@
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
-} from "react-router-dom";
-import { ROUTES } from "./route";
+import { createBrowserRouter } from "react-router-dom";
+import { ROUTES } from "./routes";
 
-export const router = createBrowserRouter(
-  createRoutesFromElements(
-    <>
-      {ROUTES.map((route) => (
-        <Route key={route.path} path={route.path} element={route.element} />
-      ))}
-    </>
-  )
-);
+export const router = createBrowserRouter(ROUTES);

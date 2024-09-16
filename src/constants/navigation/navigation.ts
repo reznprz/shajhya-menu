@@ -1,18 +1,22 @@
-import { PATHS } from "constants/router/paths";
 import { useNavigate } from "react-router-dom";
+import { PATHS } from "../router/routes";
 
 const useAppNavigation = () => {
   const navigate = useNavigate();
 
   const goToMenu = () => {
-    navigate(PATHS.MENU);
+    navigate(PATHS.FOOD_MENU);
   };
 
-  const goToFoodItem = (itemId?: string) => {
+  const goToFoodItem = () => {
+    navigate(PATHS.FOOD_MENU_ITEM);
+  };
+
+  const goToItem = (itemId?: string) => {
     if (itemId) {
-      navigate(`${PATHS.FOOD_ITEM}`);
+      navigate(PATHS.ITEM.replace(":id", itemId));
     } else {
-      navigate(PATHS.FOOD_ITEM);
+      navigate(PATHS.HOME); // Redirect to home or a default page
     }
   };
 

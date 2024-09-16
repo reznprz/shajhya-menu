@@ -1,5 +1,5 @@
 import React from "react";
-import SubCategoryContainer from "../../components/FoodMenu/SubCategoryContainer";
+import SubCategoryContainer from "../../components/Menu/SubCategoryContainer";
 import { useFood } from "../../hooks/useFood";
 import { StateType } from "../../util/State";
 

@@ -1,7 +1,9 @@
-export const FoodMenuItem: React.FC = () => {
+const FoodMenuItem: React.FC = () => {
   return (
     <div>
       <h1>menu Items</h1>
     </div>
   );
 };
+
+export default FoodMenuItem;

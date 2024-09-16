@@ -1,6 +1,6 @@
 import React from "react";
 import { Food } from "../../model/Api";
-import useAppNavigation from "constants/navigation/navigation";
+import useAppNavigation from "../../constants/navigation/navigation";
 
 interface SubCategoryContainerProps {
   title: string;
