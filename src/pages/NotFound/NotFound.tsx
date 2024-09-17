@@ -1,5 +1,5 @@
 import React from "react";
-import useAppNavigation from "../../constants/navigation/navigation";
+import useAppNavigation from "../../hooks/navigation/navigation";
 
 const NotFound: React.FC = () => {
   const { goToHome } = useAppNavigation();

@@ -8,12 +8,15 @@ module.exports = {
     },
     extend: {
       colors: {
-        backgroundColor: "#fef6eb",
-        primaryFontColor: "#bb6561",
-        secondaryBackgroundColor: "#2a4759",
+        "background-color": "#fef6eb",
+        "primary-font-color": "#bb6561",
+        "secondary-background-color": "#2a4759",
+        "light-primary-bg-color": "#f0d8d6",
+        "light-brown": "#d2a679",
       },
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],
+        custom: ["Georgia", "serif"],
       },
     },
   },
