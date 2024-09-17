@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Food } from "model/Api";
 import Header from "../../components/Menu/Header";
 import CategoryBar from "../../components/Menu/CategoryBar";
 import QrFoodList from "../../components/Menu/QrFoodList";
+import { useNavigation } from "context/NavigationContext";
 
 interface LocationState {
   subCategoryMap?: Map<string, Food[]>;
@@ -13,7 +14,7 @@ const QrFoodItem: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const location = useLocation();
-  const navigate = useNavigate();
+  const { goBack } = useNavigation();
 
   const state = location.state as LocationState;
   const subCategoryMap: Map<string, Food[]> =
@@ -56,10 +57,6 @@ const QrFoodItem: React.FC = () => {
 
       setSelectedCategory(category);
     }
-  };
-
-  const goBack = () => {
-    navigate(-1);
   };
 
   return (

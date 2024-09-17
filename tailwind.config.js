@@ -13,10 +13,13 @@ module.exports = {
         "secondary-background-color": "#2a4759",
         "light-primary-bg-color": "#f0d8d6",
         "light-brown": "#d2a679",
+        "primary-text-color": "#6b292e",
       },
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],
         custom: ["Georgia", "serif"],
+        anticSlab: ["Antic Slab", "serif"],
+        arsenal: ["Arsenal", "sans-serif"],
       },
     },
   },

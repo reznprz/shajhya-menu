@@ -7,7 +7,7 @@ import FoodLoadingSpinner from "../../components/FoodLoadingSpinner";
 const FoodMenu: React.FC = () => {
   const { subCategoryNames, foodState, onSubCategoryClick } = useFood();
 
-  if (foodState.state === StateType.Loading) {
+  if (foodState === StateType.Loading) {
     return (
       <div
         className="d-flex justify-content-center align-items-center"
@@ -19,7 +19,7 @@ const FoodMenu: React.FC = () => {
   }
 
   // TODO: revise the state logic
-  if (foodState.state === StateType.Failure) {
+  if (foodState === StateType.Failure) {
     return (
       <div
         className="d-flex justify-content-center align-items-center"

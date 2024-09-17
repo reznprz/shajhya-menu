@@ -1,8 +1,8 @@
+import { useNavigation } from "context/NavigationContext";
 import React from "react";
-import useAppNavigation from "../../hooks/navigation/navigation";
 
 const NotFound: React.FC = () => {
-  const { goToHome } = useAppNavigation();
+  const { goToHome } = useNavigation();
 
   return (
     <div>

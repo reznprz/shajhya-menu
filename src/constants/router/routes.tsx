@@ -1,17 +1,17 @@
 import React, { lazy } from "react";
 import { RouteObject } from "react-router-dom";
 
-const Home = lazy(() => import("../../pages/FoodMenu/FoodMenu"));
-const FoodMenu = lazy(() => import("../../pages/FoodMenu/FoodMenu"));
+const Home = lazy(() => import("../../pages/FoodMenu/QrMenu"));
+const QrMenu = lazy(() => import("../../pages/FoodMenu/QrMenu"));
 const FoodItem = lazy(() => import("../../pages/FoodMenu/FoodItem"));
-const FoodMenuItem = lazy(() => import("../../pages/FoodMenu/FoodMenuItem"));
+const QrFoodItem = lazy(() => import("../../pages/FoodMenu/QrFoodItem"));
 const NotFound = lazy(() => import("../../pages/NotFound/NotFound"));
 
 export const PATHS = {
-  HOME: "/", // Now handled by Providers/Layout
-  FOOD_MENU: "/menu",
+  HOME: "/",
+  QR_MENU: "qr/menu",
   ITEM: "/foodItem/:id",
-  FOOD_MENU_ITEM: "/foodItem",
+  QR_FOOD_ITEM: "qr/foodItem",
 } as const;
 
 export const ROUTES: RouteObject[] = [
@@ -20,12 +20,12 @@ export const ROUTES: RouteObject[] = [
     element: <Home />,
   },
   {
-    path: PATHS.FOOD_MENU,
-    element: <FoodMenu />,
+    path: PATHS.QR_MENU,
+    element: <QrMenu />,
   },
   {
-    path: PATHS.FOOD_MENU_ITEM,
-    element: <FoodMenuItem />,
+    path: PATHS.QR_FOOD_ITEM,
+    element: <QrFoodItem />,
   },
   {
     path: PATHS.ITEM,

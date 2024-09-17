@@ -27,7 +27,7 @@ const QrFoodList: React.FC<QrFoodListProps> = ({
           }}
           className="mb-6"
         >
-          <h2 className="text-xl font-bold mb-4 text-center font-custom text-secondary-background-color scroll-mt-[112px]">
+          <h2 className="text-xl font-bold mb-4 text-center font-font-arsenal text-secondary-background-color scroll-mt-[112px]">
             {category}
           </h2>
           <div>
