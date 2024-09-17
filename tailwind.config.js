@@ -14,6 +14,7 @@ module.exports = {
         "light-primary-bg-color": "#f0d8d6",
         "light-brown": "#d2a679",
         "primary-text-color": "#6b292e",
+        "left-border-color": "#bb6561",
       },
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],

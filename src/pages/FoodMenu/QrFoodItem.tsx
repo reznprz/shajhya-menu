@@ -1,37 +1,47 @@
-import React, { useEffect, useRef, useState } from "react";
+// src/pages/FoodMenu/QrFoodItem.tsx
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Food } from "model/Api";
 import Header from "../../components/Menu/Header";
 import CategoryBar from "../../components/Menu/CategoryBar";
 import QrFoodList from "../../components/Menu/QrFoodList";
-import { useNavigation } from "context/NavigationContext";
+import { useNavigation } from "../../context/NavigationContext";
 import PrimaryImage from "../../components/PrimaryImage";
+import ErrorNotification from "../../components/ErrorNotification";
 
 interface LocationState {
   subCategoryMap?: Map<string, Food[]>;
 }
 
 const QrFoodItem: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   const location = useLocation();
   const { goBack } = useNavigation();
 
   const state = location.state as LocationState;
-  const subCategoryMap: Map<string, Food[]> =
-    state?.subCategoryMap || new Map();
 
-  const subCategoryName = Array.from(subCategoryMap.keys())[0];
-  const filteredFoods: Food[] = subCategoryMap.get(subCategoryName) || [];
+  const subCategoryMap = useMemo(() => {
+    return state?.subCategoryMap || new Map<string, Food[]>();
+  }, [state?.subCategoryMap]);
 
-  // Filter out null or undefined category names
-  const categories: string[] = Array.from(
-    new Set(
-      filteredFoods
-        .map((food) => food.categoryName)
-        .filter((category): category is string => category != null)
-    )
-  );
+  const subCategoryName = useMemo(() => {
+    return Array.from(subCategoryMap.keys())[0];
+  }, [subCategoryMap]);
+
+  const filteredFoods = useMemo(() => {
+    return subCategoryMap.get(subCategoryName) || [];
+  }, [subCategoryMap, subCategoryName]);
+
+  const categories = useMemo(() => {
+    return Array.from(
+      new Set(
+        filteredFoods
+          .map((food) => food.categoryName)
+          .filter((category): category is string => category != null)
+      )
+    );
+  }, [filteredFoods]);
 
   const categoryRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
@@ -60,8 +70,32 @@ const QrFoodItem: React.FC = () => {
     }
   };
 
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (subCategoryMap.size === 0) {
+      setErrorMessage("No data available for the selected category.");
+    } else if (filteredFoods.length === 0) {
+      setErrorMessage("No food items found in this category.");
+    } else {
+      setErrorMessage("");
+    }
+  }, [subCategoryMap, filteredFoods]);
+
+  useEffect(() => {
+    if (errorMessage) {
+      const timer = setTimeout(() => {
+        setErrorMessage("");
+      }, 5000); // Auto-dismiss after 5 seconds
+
+      return () => clearTimeout(timer);
+    }
+  }, [errorMessage]);
+
+  const closeError = () => setErrorMessage("");
+
   return (
-    <div className="w-screen bg-background-color">
+    <div className="w-screen bg-background-color min-h-screen relative">
       <PrimaryImage
         src="/shajhya.jpg"
         alt="Shajhya"
@@ -70,11 +104,9 @@ const QrFoodItem: React.FC = () => {
         objectFit="cover"
       />
 
-      {/* Sticky Header and Category List */}
       <div className="sticky top-0 bg-background-color z-10">
         <Header subCategoryName={subCategoryName} goBack={goBack} />
 
-        {/* Horizontal Scrollable Category Bar */}
         <CategoryBar
           categories={categories}
           selectedCategory={selectedCategory}
@@ -82,13 +114,19 @@ const QrFoodItem: React.FC = () => {
         />
       </div>
 
-      <main>
-        <QrFoodList
-          categories={categories}
-          filteredFoods={filteredFoods}
-          categoryRefs={categoryRefs}
-        />
+      <main className="p-4">
+        {subCategoryMap.size > 0 && filteredFoods.length > 0 && (
+          <QrFoodList
+            categories={categories}
+            filteredFoods={filteredFoods}
+            categoryRefs={categoryRefs}
+          />
+        )}
       </main>
+
+      {errorMessage && (
+        <ErrorNotification message={errorMessage} onClose={closeError} />
+      )}
     </div>
   );
 };
