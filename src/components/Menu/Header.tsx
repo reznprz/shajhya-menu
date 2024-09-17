@@ -7,7 +7,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ subCategoryName, goBack }) => {
   return (
-    <header className="flex items-center justify-between mb-2 text-secondary-background-color border-b border-gray-200">
+    <header className="flex items-center justify-between mb-2 text-secondary-background-color border-b border-gray-200 pt-4">
       <button onClick={goBack} className="text-primary-font-color">
         ← Back
       </button>

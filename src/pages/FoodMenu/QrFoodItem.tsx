@@ -5,6 +5,7 @@ import Header from "../../components/Menu/Header";
 import CategoryBar from "../../components/Menu/CategoryBar";
 import QrFoodList from "../../components/Menu/QrFoodList";
 import { useNavigation } from "context/NavigationContext";
+import PrimaryImage from "../../components/PrimaryImage";
 
 interface LocationState {
   subCategoryMap?: Map<string, Food[]>;
@@ -45,7 +46,7 @@ const QrFoodItem: React.FC = () => {
   const scrollToCategory = (category: string) => {
     const categoryRef = categoryRefs.current[category];
     if (categoryRef) {
-      const headerOffset = 112;
+      const headerOffset = 115;
       const elementPosition =
         categoryRef.getBoundingClientRect().top + window.pageYOffset;
       const offsetPosition = elementPosition - headerOffset;
@@ -60,7 +61,15 @@ const QrFoodItem: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto p-4 bg-background-color">
+    <div className="w-screen bg-background-color">
+      <PrimaryImage
+        src="/shajhya.jpg"
+        alt="Shajhya"
+        mobileHeight="175px"
+        desktopHeight="300px"
+        objectFit="cover"
+      />
+
       {/* Sticky Header and Category List */}
       <div className="sticky top-0 bg-background-color z-10">
         <Header subCategoryName={subCategoryName} goBack={goBack} />

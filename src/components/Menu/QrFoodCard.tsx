@@ -29,7 +29,7 @@ const QrFoodCard: React.FC<QrFoodCardProps> = ({ food }) => {
   }
 
   return (
-    <div className="mb-4">
+    <div className="mb-4 pl-4 pr-4">
       <div className="flex justify-between items-center">
         <h3 className="text-base font-normal font-arsenal text-primary-text-color">
           {processedName}
