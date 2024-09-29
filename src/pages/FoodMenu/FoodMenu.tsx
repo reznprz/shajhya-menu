@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import SubCategoryContainer from "../../components/FoodMenu/SubCategoryContainer";
 import { useFood } from "../../hooks/useFood";
 import { StateType } from "../../util/State";
+import { useQuery } from "@tanstack/react-query";
+import { getFoodItems } from "../../service/FoodService";
 // import { Alert, Spinner } from "react-bootstrap";
 
 const FoodMenu: React.FC = () => {
   const { groupedFoods, foodState } = useFood();
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["foodItems"],
+    queryFn: getFoodItems,
+  });
 
   if (foodState.state === StateType.Loading) {
     return (

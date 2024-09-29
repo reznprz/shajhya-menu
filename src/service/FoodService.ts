@@ -2,6 +2,8 @@ import { foodApi, FoodApi } from "../api/FoodApi";
 import { GetAllFoodsResponse } from "../model/Api";
 import { ApiErrorType, ApiResult } from "./ApiResult";
 
+import { authApi } from "../core/api"
+
 class FoodService {
   private foodApi: FoodApi;
 
@@ -31,3 +33,9 @@ class FoodService {
 }
 
 export const foodService = new FoodService(foodApi);
+
+
+export const getFoodItems = async () => {
+  const response = await authApi.get('/api/foods/v2')
+  return response
+}
