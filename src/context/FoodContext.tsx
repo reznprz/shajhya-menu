@@ -15,6 +15,7 @@ interface FoodContextProps {
   foodList: Food[];
   fetchFood: () => Promise<void>;
   foodState: StateType;
+  errorMsg?: string;
 }
 
 const FoodContext = createContext<FoodContextProps | undefined>(undefined);
@@ -68,8 +69,9 @@ export const FoodProvider: React.FC<FoodProviderProps> = ({ children }) => {
       foodList,
       fetchFood,
       foodState: foodState.state,
+      errorMsg: foodState.error || "",
     }),
-    [subCategoryNames, foodList, fetchFood, foodState.state]
+    [subCategoryNames, foodList, fetchFood, foodState.state, foodState.error]
   );
 
   return <FoodContext.Provider value={value}>{children}</FoodContext.Provider>;

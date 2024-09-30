@@ -4,7 +4,8 @@ import { useFoodContext } from "context/FoodContext";
 import { StateType } from "util/State";
 
 export function useFood() {
-  const { subCategoryNames, foodList, fetchFood, foodState } = useFoodContext();
+  const { subCategoryNames, foodList, fetchFood, foodState, errorMsg } =
+    useFoodContext();
   const { goToFoodItem } = useNavigation();
 
   // Ref to track if fetchFood has been called
@@ -37,5 +38,6 @@ export function useFood() {
     subCategoryNames,
     foodList,
     onSubCategoryClick,
+    errorMsg,
   };
 }
