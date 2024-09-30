@@ -1,32 +1,31 @@
 import React, { lazy } from "react";
 import { RouteObject } from "react-router-dom";
 
-// Lazy load components for better performance
-const Home = lazy(() => import("../../pages/FoodMenu/FoodMenu"));
-const FoodMenu = lazy(() => import("../../pages/FoodMenu/FoodMenu"));
-const FoodMenuItem = lazy(() => import("../../pages/FoodMenu/FoodMenuItem"));
+const Home = lazy(() => import("../../pages/FoodMenu/QrMenu"));
+const QrMenu = lazy(() => import("../../pages/FoodMenu/QrMenu"));
 const FoodItem = lazy(() => import("../../pages/FoodMenu/FoodItem"));
+const QrFoodItem = lazy(() => import("../../pages/FoodMenu/QrFoodItem"));
 const NotFound = lazy(() => import("../../pages/NotFound/NotFound"));
 
 export const PATHS = {
   HOME: "/",
-  FOOD_MENU: "/menu",
+  QR_MENU: "qr/menu",
   ITEM: "/foodItem/:id",
-  FOOD_MENU_ITEM: "/foodItem",
+  QR_FOOD_ITEM: "qr/foodItem",
 } as const;
 
 export const ROUTES: RouteObject[] = [
   {
-    path: PATHS.HOME,
+    index: true, // Corresponds to the HOME path
     element: <Home />,
   },
   {
-    path: PATHS.FOOD_MENU,
-    element: <FoodMenu />,
+    path: PATHS.QR_MENU,
+    element: <QrMenu />,
   },
   {
-    path: PATHS.FOOD_MENU_ITEM,
-    element: <FoodMenuItem />,
+    path: PATHS.QR_FOOD_ITEM,
+    element: <QrFoodItem />,
   },
   {
     path: PATHS.ITEM,

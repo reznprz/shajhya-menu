@@ -1,21 +1,17 @@
 import React from "react";
-import { Food } from "../../model/Api";
-import useAppNavigation from "../../constants/navigation/navigation";
 
 interface SubCategoryContainerProps {
   title: string;
-  items: Food[];
+  onSubCategoryClick: (subCategoryName: string) => void;
 }
 
 const SubCategoryContainer: React.FC<SubCategoryContainerProps> = ({
   title,
-  items,
+  onSubCategoryClick,
 }) => {
-  const { goToFoodItem } = useAppNavigation();
-
   return (
-    <div className="bg-secondaryBackgroundColor mb-4 p-4">
-      <button onClick={() => goToFoodItem()}>
+    <div className="bg-secondary-background-color mb-4 p-4">
+      <button onClick={() => onSubCategoryClick(title)}>
         <h3 className="text-white font-medium">{title}</h3>
       </button>
     </div>

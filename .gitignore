@@ -7,8 +7,13 @@
 # testing
 /coverage
 
-# production
-/build
+# Build directories
+build/
+dist/
+
+# Cache directories
+.cache/
+tmp/
 
 # misc
 .DS_Store
